@@ -141,9 +141,9 @@ jobs:
               --query 'Reservations[*].Instances[*].PublicIpAddress' \
               --output text >> inventory.txt
       - persist_to_workspace:
-          root: ~/
+          root: .circleci/ansible
           paths:
-            - project/.circleci/ansible/inventory.txt
+            - inventory.txt
       - destroy-environment
       # Here is where you will add some code to rollback on failure
 
@@ -155,7 +155,7 @@ jobs:
       - add_ssh_keys:
           fingerprints: ["70:94:46:1d:9f:a7:83:a4:34:e5:74:14:12:11:83:21"]
       - attach_workspace:
-          at: ~/
+          at: .circleci/ansible
       - run:
           name: Install dependencies
           command: |
