@@ -188,7 +188,7 @@ jobs:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      checkout
+      - checkout
       - attach_workspace:
           at: ~/
       - run:
@@ -233,3 +233,7 @@ workflows:
           requires: [test-frontend, test-backend, scan-frontend, scan-backend]
       - configure-infrastructure:
           requires: [deploy-infrastructure]
+      - run-migrations:
+          requires: [configure-infrastructure]
+      - deploy-frontend:
+          requires: [run-migrations]
