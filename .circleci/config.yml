@@ -147,7 +147,7 @@ jobs:
           root: .circleci/ansible
           paths:
             - inventory.txt
-      - destroy-environment
+      - destroy-environment:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
       # Here is where you will add some code to rollback on failure
 
@@ -170,7 +170,7 @@ jobs:
             cd .circleci/ansible
             cat inventory.txt
             ansible-playbook -i inventory.txt configure-server.yml
-      - destroy-environment
+      - destroy-environment:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
       # Here's where you will add some code to rollback on failure
 
@@ -194,7 +194,7 @@ jobs:
             then
               curl https://kvdb.io/Y36BszV6yZ692gknJgmBtm/migration_${CIRCLE_WORKFLOW_ID:0:7} -d '1'
             fi
-      - destroy-environment
+      - destroy-environment:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
      # Here's where you will add some code to rollback on failure
 
@@ -228,7 +228,7 @@ jobs:
             npm run build
             tar -czvf artifact-"${CIRCLE_WORKFLOW_ID:0:7}".tar.gz dist
             aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
-      - destroy-environment
+      - destroy-environment:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
       # Here's where you will add some code to rollback on failure
 
