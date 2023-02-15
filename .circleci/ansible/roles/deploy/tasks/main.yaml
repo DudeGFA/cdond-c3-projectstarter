@@ -7,7 +7,7 @@
 - name: "unarchive artifact into Instance"
   become: true
   unarchive:
-    src: artifact.tar.gz
+    src: ~/project/artifact.tar.gz
     dest: ~/artifact
 
 - name: "npm install"
