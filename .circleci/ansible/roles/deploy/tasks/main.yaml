@@ -7,10 +7,10 @@
 - name: "unarchive artifact into Instance"
   become: true
   unarchive:
-    src: ~/project/artifact.tar.gz
+    src: artifact.tar.gz
     dest: ~/artifact
 
-- name: "Start app"
+- name: "npm install"
   become: true
   shell: |
     cd ~/artifact
@@ -21,4 +21,4 @@
   shell: |
     cd ~/artifact/dist
     pm2 stop default
-    pm2 start npm main.js
+    pm2 start main.js
