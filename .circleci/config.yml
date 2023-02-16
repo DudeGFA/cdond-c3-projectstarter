@@ -26,7 +26,7 @@ commands:
           when: on_fail
           command: |
             SUCCESS = $(curl --insecure https://kvdb.io/Y36BszV6yZ692gknJgmBtm/migration_<< parameters.workflow_id >>)
-            if(( $SUCCESS==1 ));
+            if(( $SUCCESS==1 ))
             then
               cd ~/project/backend
               npm install
@@ -297,7 +297,7 @@ jobs:
           command: |
             apk add --update --no-cache tar gzip nodejs npm curl aws-cli
       - run:
-          name: Get backend url
+          name: Get backend url and perform Backend smoke test.
           command: |
             export BACKEND_IP=$(aws ec2 describe-instances \
             --query "Reservations[*].Instances[*].[PublicIpAddress]" \
@@ -310,15 +310,14 @@ jobs:
             echo $BACKEND
             export API_URL="http://${BACKEND}:3030"
             echo "API_URL=${API_URL}"
-      - run:
-          name: Backend smoke test.
-          command: |
+            echo "Sleeping for a minute"
+            sleep 60
             if curl -v "${API_URL}/api/status" | grep "ok"
             then
               return 0
             else
               return 1
-            fi 
+            fi
       - run:
           name: Frontend smoke test.
           command: |
