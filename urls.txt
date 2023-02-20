@@ -1,2 +1,2 @@
-Public Url to GitHub repository: https://github.com/DudeGFA/cdond-c3-projectstarter
-Public Url to my s3 bucket: http://udapeople-85f7c4e.s3-website-us-east-1.amazonaws.com
+Public Url to GitHub repository[URL01]: https://github.com/DudeGFA/cdond-c3-projectstarter
+S3 bucket url[URLO2]: http://udapeople-85f7c4e.s3-website-us-east-1.amazonaws.com
